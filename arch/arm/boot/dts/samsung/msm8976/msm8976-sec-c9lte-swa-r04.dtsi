@@ -213,6 +213,7 @@
 		};
 	};
 	
+#if 0
 	i2c_8:i2c@8 { /* SW I2C */
 		cell-index = <2>;
 		compatible = "i2c-gpio";
@@ -227,8 +228,6 @@
 		pinctrl-1 = <&i2c_1_sleep>;
 	
 	};
-
-#if 0
 	i2c_5: i2c@7af5000 { /* BLSP2 QUP1 */
 		compatible = "qcom,i2c-msm-v2";
 		#address-cells = <1>;
