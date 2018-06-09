@@ -22,7 +22,7 @@
 #include <linux/mfd/core.h>
 #include <linux/mfd/sm5705/sm5705.h>
 #include <linux/regulator/machine.h>
-#include "include/sec_charging_common.h"
+#include "../sec_charging_common.h"
 
 
 
