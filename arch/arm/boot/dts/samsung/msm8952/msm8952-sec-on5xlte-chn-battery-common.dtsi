@@ -35,18 +35,10 @@
 			fuelgauge,capacity_max_margin = <70>;
 			fuelgauge,capacity_min = <0>;
 			fuelgauge,capacity_calculation_type = <0x1F>;
-			
+
 			fuelgauge,temperature_compensation;
-			fuelgauge,temp_table = <(-200) 349 350 360 370 380 390 400
-					        410 420 430 440 450 460 470 480 490 500
-                                                510 520 530 540 550 560 570 580 590 600
-					        610 620 630 640 650 660 670 680 690 700
-                                                710 720 730 740 750 760 770 780 790 800>;
-			fuelgauge,temp_comp_table = <(-200) 349 360 370 380 390 400 410
-					        420 430 440 450 460 470 480 490 500 510
-					        520 530 540 550 560 570 580 590 600 610
-					        620 630 640 650 660 670 680 690 700 710
-					        720 730 740 750 760 770 780 790 800 810>;
+			fuelgauge,temp_table = <(-217) (-175) (-132) (-87) (-38) 8 55 103 152 200 250 296 341 387 432 476 503 522 569 615 666 717>;
+			fuelgauge,temp_comp_table = <(-200) (-150) (-100) (-50) 0 50 100 150 200 250 300 350 400 450 500 550 580 600 650 700 750 800>;
 		};
 	};
 
@@ -175,7 +167,6 @@
 		battery,swelling_drop_float_voltage = <4200>;
 		battery,swelling_high_rechg_voltage = <4150>;
 		battery,swelling_low_rechg_voltage = <4050>;
-		battery,swelling_offset_voltage = <20>;
 		battery,swelling_block_time = <600>;
 
 		battery,self_discharging_temp_block = <600>;
@@ -183,8 +174,8 @@
 		battery,self_discharging_temp_recov = <550>;
 		battery,self_discharging_temp_pollingtime = <400>;
 
-		battery,input_current_limit = <1000 460 0 1000 460 1000 1000 460 1000 1000 820 1000 1000 0 1000 300 700 1000 1000 300 80 900 1000 1000 1000 1600 1600 1600 1400 900 820 820 900 1000 1000>;
-		battery,fast_charging_current = <1800 460 500 1800 500 1200 1000 500 0 1200 1000 1800 1800 0 1300 300 700 1300 1500 300 80 1200 1500 1000 1000 3150 1000 3000 1400 1200 1000 1000 1200 0 1000>;
+		battery,input_current_limit = <1000 0 0 1000 460 1000 1000 460 1000 1000 820 1000 1000 0 1000 300 700 1000 1000 300 80 900 1000 1000 1000 1600 1600 1600 1400 900 820 820 900 1000 1000>;
+		battery,fast_charging_current = <1800 0 500 1800 500 1200 1000 500 0 1200 1000 1800 1800 0 1300 300 700 1300 1500 300 80 1200 1500 1000 1000 3150 1000 3000 1400 1200 1000 1000 1200 0 1000>;
 		battery,full_check_current_1st = <200 0 200 200 200 200 200 200 0 0 200 200 200 0 200 200 200 200 200 200 200 200 0 200 200 200 200 200 200 200 200 200 200 0 200>;
 		battery,full_check_current_2nd = <100 0 100 100 100 100 100 100 0 100 100 100 100 0 100 100 100 100 100 100 100 100 0 100 100 100 100 100 100 100 100 100 100 0 100>;
 
@@ -192,9 +183,6 @@
 		battery,always_enable;
 
 		battery,chg_float_voltage = <4390>;
-
-		battery,pre_afc_input_current = <500>;
-		battery,pre_afc_work_delay = <100>;
 
 		charger {
 			battery,charger_name = "s2mu005-charger";

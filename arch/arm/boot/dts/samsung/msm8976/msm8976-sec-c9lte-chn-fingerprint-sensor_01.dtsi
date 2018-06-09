@@ -17,40 +17,40 @@
 };
 
 &tlmm_pinmux {
-	vfsspi_drdypin {
+	etspi_drdypin {
 		qcom,pins = <&gp 112>;
 		qcom,pin-func = <0>;
 		qcom,num-grp-pins = <1>;
-		label = "vfsspi_drdypin";
-		vfsspi_drdypin_active: vfsspi_drdypin_active {
+		label = "etspi_drdypin";
+		etspi_drdypin_active: etspi_drdypin_active {
 			drive-strength = <2>;
 			bias-pull-none;
 		};
-		vfsspi_drdypin_suspend: vfsspi_drdypin_suspend {
+		etspi_drdypin_suspend: etspi_drdypin_suspend {
 			drive-strength = <2>;
 			bias-pull-down;
 		};
 	};
 
-	vfsspi_ldopin {
+	etspi_ldopin {
 		qcom,pins = <&gp 122>;
 		qcom,pin-func = <0>;
 		qcom,num-grp-pins = <1>;
-		label = "vfsspi_ldopin";
-		vfsspi_ldopin: vfsspi_ldopin {
+		label = "etspi_ldopin";
+		etspi_ldopin: etspi_ldopin {
 			drive-strength = <2>;
-			bias-pull-down;
+			bias-pull-none;
 		};
 	};
 
-	vfsspi_sleeppin {
+	etspi_sleeppin {
 		qcom,pins = <&gp 128>;
 		qcom,pin-func = <0>;
 		qcom,num-grp-pins = <1>;
-		label = "vfsspi_sleeppin";
-		vfsspi_sleeppin: vfsspi_sleeppin {
+		label = "etspi_sleeppin";
+		etspi_sleeppin: etspi_sleeppin {
 			drive-strength = <2>;
-			bias-pull-down;
+			bias-pull-none;
 		};
 	};
 };
@@ -59,7 +59,7 @@
 	/delete-node/ i2c@78b8000;
 
 	spi_4: spi@78b8000 { /* BLSP1 QUP4 */
-		status = "ok";
+		status = "okay";
 		compatible = "qcom,spi-qup-v2";
 		#address-cells = <1>;
 		#size-cells = <0>;
@@ -85,21 +85,21 @@
 		clocks = <&clock_gcc clk_gcc_blsp1_ahb_clk>,
 			 <&clock_gcc clk_gcc_blsp1_qup4_spi_apps_clk>;
 
-		vfsspi-spi@0 {
-			compatible = "vfsspi,vfs7xxx";
+		etspi-spi@0 {
+			compatible = "etspi,et5xx";
 			reg = <0>;
 			spi-max-frequency = <19200000>;
-			vfsspi-sleepPin = <&msm_gpio 128 0x00>;
-			vfsspi-drdyPin = <&msm_gpio 112 0x01>;
-			vfsspi-ldoPin = <&msm_gpio 122 0x00>;
-			vfsspi-orient = <0>;
-			vfsspi-ldocontrol= <1>;
-			vfsspi-min_cpufeq_limit = <1804800>;
+			etspi-sleepPin = <&msm_gpio 128 0x00>;
+			etspi-drdyPin = <&msm_gpio 112 0x00>;
+			etspi-ldoPin = <&msm_gpio 122 0x00>;
+			etspi-chipid = "ET510";
+			etspi-ldocontrol = <1>;
+			etspi-min_cpufreq_limit = <1804800>;
 
 			pinctrl-names = "default", "sleep", "idle";
-			pinctrl-0 = <&vfsspi_drdypin_active &vfsspi_ldopin &vfsspi_sleeppin>;
-			pinctrl-1 = <&vfsspi_drdypin_suspend>;
-			pinctrl-2 = <&vfsspi_drdypin_active>;
+			pinctrl-0 = <&etspi_drdypin_active &etspi_ldopin &etspi_sleeppin>;
+			pinctrl-1 = <&etspi_drdypin_suspend>;
+			pinctrl-2 = <&etspi_drdypin_active>;
 		};
 	};
 };

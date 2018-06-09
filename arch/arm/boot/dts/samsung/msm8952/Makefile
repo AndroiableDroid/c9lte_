@@ -26,8 +26,6 @@ ifeq ($(CONFIG_SEC_ON5XLTE_PROJECT),y)
 		dtb-y += msm8952-sec-on5xlte-chn-r00.dtb
 		dtb-y += msm8952-sec-on5xlte-chn-r01.dtb
 		dtb-y += msm8952-sec-on5xlte-chn-r02.dtb
-		dtb-y += msm8952-sec-on5xlte-chn-r03.dtb
-		dtb-y += msm8952-sec-on5xlte-chn-r04.dtb
 	endif
 endif
 

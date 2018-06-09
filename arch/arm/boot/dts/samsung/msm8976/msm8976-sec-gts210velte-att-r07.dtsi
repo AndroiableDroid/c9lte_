@@ -247,10 +247,9 @@
 			interrupts = <107 0>;
 			sx9310,nirq-gpio = <&msm_gpio 107 0x1>;
 			sx9310,normal_th = <144>;
-			sx9310,cable_norm_th = <232>;
+			sx9310,cable_norm_th = <224>;
 			sx9310,ctrl0 = <0x70>;
 			sx9310,ctrl3 = <0x03>;
-			sx9310,ctrl5 = <0xc1>;
 			sx9310,ctrl7 = <0x4a>;
 		};
 	};
@@ -998,10 +997,6 @@
 			qcom,lra-res-cal-period = <0>;
 		};
 	};
-
-//remove all unnecessary redundant PMI operation(qcom,pmi8950@2, qcom,pmi8950@3) by QC guide, case 02645142
-	/delete-node/ qcom,pmi8950@2;
-	/delete-node/ qcom,pmi8950@3;
 };
 
 &sdhc_1 {
@@ -1086,6 +1081,16 @@
 	};
 };
 
+&pmi8950_fg {
+	qcom,battery-data = <&mtp_batterydata>;
+};
+
+&pmi8950_charger {
+	qcom,battery-data = <&mtp_batterydata>;
+	qcom,chg-led-support;
+	qcom,chg-led-sw-controls;
+};
+
 /* CoreSight */
 &tpiu {
 	pinctrl-names = "sdcard", "trace", "swduart",
@@ -1115,7 +1120,7 @@
 	status = "disabled";
 	/delete-node/ tasha_codec;
 };
-#include "../../../../../../drivers/video/msm/mdss/samsung/ANA38401_AMS968HH01/dsi_panel_ANA38401_AMS968HH01_qxga_octa_cmd_sea.dtsi"
+#include "../../../../../../drivers/video/msm/mdss/samsung/ANA38401_AMS968HH01/dsi_panel_ANA38401_AMS968HH01_qxga_octa_cmd.dtsi"
 &pmx_mdss {
 	qcom,num-grp-pins = <2>;
 	qcom,pins = <&gp 25>, <&gp 138>;

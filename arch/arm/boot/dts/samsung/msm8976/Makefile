@@ -36,8 +36,15 @@ ifeq ($(CONFIG_SEC_C9LTE_PROJECT),y)
         ifeq ($(CONFIG_MACH_C9LTE_CHN_OPEN),y)
                 dtb-y += msm8976-sec-c9lte-chn-r00.dtb
                 dtb-y += msm8976-sec-c9lte-chn-r01.dtb
+                dtb-y += msm8976-sec-c9lte-chn-r02.dtb
+                dtb-y += msm8976-sec-c9lte-chn-r04.dtb
+                dtb-y += msm8976-sec-c9lte-chn-r07.dtb
+                dtb-y += msm8976-sec-c9lte-chn-r08.dtb
         endif
-	ifeq ($(CONFIG_MACH_C9LTE_SWA_OPEN),y)
+        ifeq ($(CONFIG_MACH_C9LTE_CHN_HK),y)
+                dtb-y += msm8976-sec-c9lte-chn-hk-r08.dtb
+        endif
+		ifeq ($(CONFIG_MACH_C9LTE_SWA_OPEN),y)
                 dtb-y += msm8976-sec-c9lte-swa-r04.dtb
                 dtb-y += msm8976-sec-c9lte-swa-r05.dtb
                 dtb-y += msm8976-sec-c9lte-swa-r06.dtb
@@ -62,10 +69,6 @@ ifeq ($(CONFIG_SEC_GTS210VELTE_PROJECT),y)
                 dtb-y += msm8976-sec-gts210velte-eur-r01.dtb
                 dtb-y += msm8976-sec-gts210velte-eur-r02.dtb
                 dtb-y += msm8976-sec-gts210velte-eur-r04.dtb
-        else ifeq ($(CONFIG_MACH_GTS210VELTE_USA_VZW),y)
-                dtb-y += msm8976-sec-gts210velte-vzw-r04.dtb
-                dtb-y += msm8976-sec-gts210velte-vzw-r07.dtb
-                dtb-y += msm8976-sec-gts210velte-vzw-r08.dtb
         else ifeq ($(CONFIG_MACH_GTS210VELTE_SEA_OPEN),y)
                 dtb-y += msm8976-sec-gts210velte-sea-r04.dtb
 	else ifeq ($(CONFIG_MACH_GTS210VELTE_USA_TMO),y)
@@ -78,10 +81,8 @@ ifeq ($(CONFIG_SEC_GTS210VELTE_PROJECT),y)
 		dtb-y += msm8976-sec-gts210velte-can-r05.dtb
 		dtb-y += msm8976-sec-gts210velte-can-r06.dtb
 		dtb-y += msm8976-sec-gts210velte-can-r07.dtb
-		dtb-y += msm8976-sec-gts210velte-can-r08.dtb
 	else ifeq ($(CONFIG_MACH_GTS210VELTE_USA_ATT),y)
 		dtb-y += msm8976-sec-gts210velte-att-r07.dtb
-		dtb-y += msm8976-sec-gts210velte-att-r08.dtb
         endif
 endif
 

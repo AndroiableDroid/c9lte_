@@ -34,7 +34,7 @@
 			label = "etspi_sleeppin";
 			etspi_sleep: etspi_sleep {
 				drive-strength = <2>;
-				bias-disable = <0>;
+				bias-pull-down;
 			};
 		};
 
@@ -45,7 +45,7 @@
 			label = "etspi_ldopin";
 			etspi_ldo: etspi_ldo {
 				drive-strength = <2>;
-				bias-disable = <0>;
+				bias-pull-down;
 			};
 		};
 

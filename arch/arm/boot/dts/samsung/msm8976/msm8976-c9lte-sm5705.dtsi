@@ -33,9 +33,11 @@
 			pinctrl-names = "muic_i2c_pins_default",
 				"muic_i2c_pins_active",
 				"muic_i2c_pins_suspend";
-			pinctrl-0 = <&sm5705_i2c_default &sm5705_interrupt_default &ifc_sense_int_ap_default>;
-			pinctrl-1 = <&sm5705_i2c_active &sm5705_interrupt_default &ifc_sense_int_ap_default>;
-			pinctrl-2 = <&sm5705_i2c_suspend &sm5705_interrupt_default &ifc_sense_int_ap_default>;
+			pinctrl-0 = <&sm5705_i2c_default &sm5705_interrupt_default>;
+			pinctrl-1 = <&sm5705_i2c_active &sm5705_interrupt_default>;
+			pinctrl-2 = <&sm5705_i2c_suspend &sm5705_interrupt_default>;
+			muic,max-afc-support-volt = <4>;
+			muic,max-afc-support-cur = <8>;
 		};
 
 		sm5705@49{
@@ -62,15 +64,25 @@
 		sm5705_fled {
 			compatible = "siliconmitus,sm5705-fled";
 			enable = <1 1>;
-			id = <0>;
-			flash-mode-current-mA = <1200>;
-			torch-mode-current-mA = <150>;
-			used-gpio-control = <1>;
-			flash-en-gpio = <&msm_gpio 34 0x00>;
-			torch-en-gpio = <&msm_gpio 32 0x00>;
+			sm5705_fled@0 {
+			    id = <0>;
+			    flash-mode-current-mA = <1100>;
+			    preflash-mode-current-mA = <150>;
+			    torch-mode-current-mA = <50>;
+			    used-gpio-control = <1>;
+			    flash-en-gpio = <&expander_gpios 1 0x00>;
+			    torch-en-gpio = <&expander_gpios 0 0x00>;
+			};
+			sm5705_fled@1 {
+			    id = <1>;
+			    flash-mode-current-mA = <300>;
+			    preflash-mode-current-mA = <50>;
+			    torch-mode-current-mA = <30>;
+			    used-gpio-control = <1>;
+			    flash-en-gpio = <&expander_gpios 3 0x00>;
+			    torch-en-gpio = <&expander_gpios 2 0x00>;
+			};
 		};
-
-
 
 	};
 };

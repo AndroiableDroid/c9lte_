@@ -14,7 +14,7 @@
 	qcom,msm-thermal {
 		qcom,mx-restriction-sensor_id = <2>;
 	};
-	
+
 	usb_noti: usb-notifier {
 		compatible = "samsung,usb-notifier";
 	};
@@ -172,7 +172,6 @@
 
 	/delete-node/ qcom,cpubw;
 	cpubw: qcom,cpubw@0 {
-		label = "cpubw";
 		reg = <0 4>;
 		compatible = "qcom,devbw";
 		governor = "cpufreq";
@@ -196,6 +195,22 @@
 			qcom,smdtty-port-name = "DS";
 		};
 	};
+
+    mcd {
+         compatible = "qcom,mcd";
+         qcom,ce-hw-instance = <0>;
+         qcom,ce-device = <0>;
+         interrupts = <0 248 0>;
+         interrupt-names = "mcd_irq";
+
+         clocks = <&clock_gcc clk_crypto_clk_src>,
+                    <&clock_gcc clk_gcc_crypto_clk>,
+                    <&clock_gcc clk_gcc_crypto_ahb_clk>,
+                    <&clock_gcc clk_gcc_crypto_axi_clk>;
+         clock-names = "core_clk_src", "core_clk",
+                              "iface_clk", "bus_clk";
+         qcom,ce-opp-freq = <100000000>;
+    };
 
 	input_booster {
 		status = "okay";
@@ -334,6 +349,18 @@
 		}; // Input Booster -
 		/* If you need to add new key type, add it this position */
 	};
+	
+	qcom,memshare {
+		compatible = "qcom,memshare";
+		linux,contiguous-region = <&modem_shared_mem>;
+
+		qcom,client_4 {
+			compatible = "qcom,memshare-peripheral";
+			qcom,peripheral-size = <0x6000000>;
+			qcom,client-id = <3>;
+			label = "modem";
+		};
+	};
 
 	qcom,lpm-levels {
 		qcom,pm-cluster@0 {
@@ -376,6 +403,12 @@
 			};
 		};
 	};
+
+	qcom,mss@4080000 {	
+		/* GPIO output to mss */
+		qcom,gpio-stop-reason-0 = <&smp2pgpio_ssr_smp2p_1_out 4 0>;
+		qcom,gpio-stop-reason-1 = <&smp2pgpio_ssr_smp2p_1_out 5 0>;
+	};
 };
 
 &secure_mem{
@@ -383,12 +416,12 @@
 };
 
 &qcom_seecom{
-	reg = <0x84700000 0x1300000>;
+	reg = <0x83E00000 0x1C00000>;
 	status = "okay";
 };
 
 &other_ext_mem{
-	reg = <0x0 0x84700000 0x0 0x2100000>;
+	reg = <0x0 0x83E00000 0x0 0x2A00000>;
 };
 
 &modem_mem{
@@ -497,9 +530,6 @@
 	};
 
 	reserved-memory {
-		#address-cells = <2>;
-		#size-cells = <2>;
-
 		lk_mem: lk_region@0 {
 			linux,reserve-contiguous-region;
 			linux,reserve-region;
@@ -523,15 +553,24 @@
 			reg = <0x0 0xA01FF000 0x0 0x201000>;
 			label = "klog_mem";
 		};
-	};
-};
+		tzapp_mem: tzapp_region@0 {
+			compatible = "removed-dma-pool";
+			no-map;
+			reg = <0x0 0x83E00000 0x0 0x1C00000>;
+		};
+		/*to reserve 2MB for TIMA buffer */
+		tima_mem: tima_region@0x85A00000 {
+			compatible = "removed-dma-pool";
+			no-map;
+			reg = <0 0x85A00000 0 0x200000>;
+		};
 
-&firmware {
-	android {
-		fstab {
-			system {
-				fsmgr_flags = "wait";
-			};
+		modem_shared_mem: modem_shared_mem_region@0 {
+			linux,reserve-contiguous-region;
+			linux,reserve-region;
+			linux,remove-completely;
+			reg = <0x0 0x93000000 0x0 0x6000000>;
+			label = "modem_shared_mem";
 		};
 	};
 };
