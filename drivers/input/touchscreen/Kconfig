@@ -1075,6 +1075,7 @@ config TOUCHSCREEN_IT7260_I2C
 
 source "drivers/input/touchscreen/stm/Kconfig"
 source "drivers/input/touchscreen/melfas/Kconfig"
+source "drivers/input/touchscreen/melfas_mms500/Kconfig"
 source "drivers/input/touchscreen/zinitix/Kconfig"
 source "drivers/input/touchscreen/zinitix_zt7538/Kconfig"
 source "drivers/input/touchscreen/synaptics_dsx2/Kconfig"

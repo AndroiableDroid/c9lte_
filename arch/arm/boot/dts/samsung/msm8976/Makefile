@@ -37,6 +37,11 @@ ifeq ($(CONFIG_SEC_C9LTE_PROJECT),y)
                 dtb-y += msm8976-sec-c9lte-chn-r00.dtb
                 dtb-y += msm8976-sec-c9lte-chn-r01.dtb
         endif
+	ifeq ($(CONFIG_MACH_C9LTE_SWA_OPEN),y)
+                dtb-y += msm8976-sec-c9lte-swa-r04.dtb
+                dtb-y += msm8976-sec-c9lte-swa-r05.dtb
+                dtb-y += msm8976-sec-c9lte-swa-r06.dtb
+        endif
 endif
 
 ifeq ($(CONFIG_SEC_GTS28VELTE_PROJECT),y)

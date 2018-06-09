@@ -661,7 +661,6 @@ static int msm_mi2s_sclk_ctl(struct snd_pcm_substream *substream, bool enable)
 	struct msm8916_asoc_mach_data *pdata = snd_soc_card_get_drvdata(card);
 #endif /* CONFIG_AUDIO_SPEAKER_OUT_NXP_AMP_ENABLE */
 	int ret = 0;
-	struct snd_soc_pcm_runtime *rtd = substream->private_data;
 	int port_id = 0;
 
 	port_id = msm8952_get_port_id(rtd->dai_link->be_id);
