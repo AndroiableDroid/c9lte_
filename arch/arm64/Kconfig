@@ -368,6 +368,13 @@ config MACH_C9LTE_CHN_OPEN
         help
           Support for Samsung C9LTE CHN OPEN device.
 
+config MACH_C9LTE_SWA_OPEN
+        bool "Samsung C9LTE SWA OPEN"
+        depends on SEC_C9LTE_PROJECT
+        default n
+        help
+          Support for Samsung C9LTE SWA OPEN device.
+
 config PROJECT_GTS28VE
         bool "Samsung GTS28VE Project"
         depends on ARCH_MSM8976
